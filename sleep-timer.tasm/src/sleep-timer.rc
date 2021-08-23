@@ -1,0 +1,60 @@
+#include "resource.h"
+//
+//
+#define ID_ABOUT            0x500
+
+#define ID_ICON             0x400
+        ID_ICON             ICON "sleep-timer.ico"
+//
+//
+#define ID_TSDLG            0x300
+    #define IDC_MINCOUNT	0x301
+    #define IDC_TASKS       0x302
+    #define IDC_COUNTER     0x303
+
+#define IDB_OK              0x100
+#define IDB_CANCEL          0x101
+#define IDB_ABOUT           0x102
+#define IDB_EXIT            0x103
+
+ID_TSDLG DIALOGEX 109, 51, 210, 55
+STYLE 0x804L | WS_OVERLAPPED | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_TOPMOST
+FONT 8, "Arial"
+{
+    COMBOBOX IDC_MINCOUNT, 31, 6, 35, 48, CBS_DROPDOWN | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX IDC_TASKS, 88, 6, 116, 48, CBS_DROPDOWNLIST | CBS_HASSTRINGS | CBS_DISABLENOSCROLL | WS_CHILD | WS_VISIBLE | WS_TABSTOP
+    DEFPUSHBUTTON "Принять", IDB_OK, 149, 24, 55, 12, BS_FLAT
+    PUSHBUTTON "Сбросить", IDB_CANCEL, 149, 37, 55, 12, BS_FLAT
+    PUSHBUTTON "Выход", IDB_EXIT, 93, 37, 55, 12, BS_FLAT
+    PUSHBUTTON "О программе", IDB_ABOUT, 93, 24, 55, 12, BS_FLAT
+    LTEXT "0", IDC_COUNTER, 42, 41, 49, 8
+    CTEXT "Через", -1, 6, 9, 25, 8
+    CTEXT "мин.", -1, 69, 9, 17, 8
+    CTEXT "Осталось:", -1, 6, 41, 36, 8
+}
+
+//
+//
+ID_ABOUT DIALOG 83, 71, 161, 61
+STYLE DS_MODALFRAME | 0x804L | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "О программе"
+FONT 8, "Arial"
+{
+    DEFPUSHBUTTON "OK", IDOK, 62, 42, 37, 13
+    CTEXT """Таймер сна"" ver. 0.1\n© 2004, Дмитрий Н. Колесников\nksoft@mail.ru", -1, 32, 9, 123, 27, SS_CENTER | NOT WS_GROUP | WS_BORDER
+    ICON ID_ICON, -1, 6, 9, 18, 20
+}
+//
+//
+#define ID_MENU             0x200
+
+ID_MENU MENU
+{
+    POPUP ""
+    {
+        MENUITEM "Сбросить", IDB_CANCEL
+        MENUITEM  SEPARATOR
+        MENUITEM "Выход", IDB_EXIT
+    }
+}
